@@ -3,7 +3,6 @@
 
 int main()
 {
-    //freopen("input.txt", "rt", stdin);
     int n, cnt=0;
     scanf("%d", &n);
 
