@@ -18,7 +18,7 @@ void DFS(int level, int val) {
 
 int main()
 {
-    freopen("input.txt", "rt", stdin);
+    //freopen("input.txt", "rt", stdin);
     scanf("%d %d", & n, &m);
     for (int i = 0; i < n; i++) {
         scanf("%d", &a[i]);
