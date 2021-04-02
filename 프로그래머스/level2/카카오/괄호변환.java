@@ -17,6 +17,7 @@ class Solution {
         String v = p.substring(idx+1);
         
         StringBuilder sb = new StringBuilder();
+        
         if(validateString(u)){ //2. u가 올바른 괄호 문자열이면
             sb.append(u);
             if(!v.equals("")){
@@ -25,6 +26,7 @@ class Solution {
             }
             return sb.toString(); //반환
         }
+        
         else{ //3. u가 올바른 괄호 문자열이 아니라면
             sb.append("("); //4-1. 빈 문자열에 "(" 붙이기
         
