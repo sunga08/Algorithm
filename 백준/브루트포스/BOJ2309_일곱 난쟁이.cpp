@@ -1,4 +1,4 @@
-// BOF2309.cpp : 일곱 난쟁이
+// 브루트포스-그냥 다 해보기
 #pragma warning(disable:4996)
 #include <iostream>
 #include <algorithm>
