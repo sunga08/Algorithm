@@ -106,3 +106,39 @@ int main()
     return 0;
 }
 ```
+## 2차원 배열에서의 DFS
+### 특정 depth까지만 탐색
+```c++
+#include <iostream>
+
+using namespace std;
+int board[10][10];
+bool check[10][10];
+int dx[4] = { -1,0,1,0 };
+int dy[4] = { 0,1,0,-1 };
+int dfsCnt = 0;
+void dfs(int x, int y, int cnt) {
+    if (cnt == 4) { //depth=4까지 탐색
+        dfsCnt++;
+        return;
+    }
+
+    for (int i = 0; i < 4; i++) {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+        if (!check[nx][ny] && nx>=0 && nx<10 && ny>=0 && ny<10) {
+            check[nx][ny] = true;
+            dfs(nx, ny, cnt + 1);
+            check[nx][ny] = false;
+        }
+    }
+}
+
+int main()
+{
+    dfs(0,0,1);
+    cout << dfsCnt; // (0,0)에서 DFS 수행하여 depth=4인 경우의 수
+
+    return 0;
+}
+```
