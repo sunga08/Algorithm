@@ -67,6 +67,63 @@ int main()
     return 0;
 }
 ```
+### JAVA 코드
+```java
+import java.util.*;
+
+public class BOJ13549_숨바꼭질 {
+	public static final int MAX = 1000000;
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+		
+		Queue<Integer> q = new LinkedList();
+		Queue<Integer> next_q = new LinkedList();
+		boolean[] visited = new boolean[MAX];
+		int[] location = new int[MAX];
+		
+		q.add(n);
+		visited[n]=true;
+		
+		while(!q.isEmpty()) {
+			int cur = q.peek();
+			q.poll();
+			if(cur*2<MAX) {
+				if(!visited[cur*2]) {
+					q.add(cur*2);
+					visited[cur*2] = true;
+					location[cur*2] = location[cur];
+				}
+			}
+			
+			if(cur+1<MAX) {
+				if(!visited[cur+1]) {
+					next_q.add(cur+1);
+					visited[cur+1] = true;
+					location[cur+1] = location[cur]+1;
+				}
+			}
+			
+			if(cur-1>=0) {
+				if(!visited[cur-1]) {
+					next_q.add(cur-1);
+					visited[cur-1] = true;
+					location[cur-1] = location[cur]+1;
+				}
+			}
+			
+			if(q.isEmpty()) {
+				q = next_q;
+				next_q = new LinkedList();
+			}
+		}
+		
+		System.out.println(location[k]);
+		
+	}
+}
+```
 
 ### 2) Deque를 사용하는 방법
 
