@@ -69,3 +69,76 @@ fill 함수에서도 두번째 인자 check+**1001** !!! </br>
 인접리스트에서 작은 숫자부터 탐색해야 할 때는 정렬 먼저 해줘야 한다. 
 
 오랜만에 구현했더니 헷갈림 6_6;;
+
+
+## JAVA
+```java
+import java.util.*;
+
+public class Main {
+    static boolean[] visited;
+    public static void main(String[] args){
+        int n, m, start;
+
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+        m = sc.nextInt();
+        start = sc.nextInt();
+
+        visited = new boolean[n+1];
+        ArrayList<Integer>[] graph = (ArrayList<Integer>[]) new ArrayList[n+1];
+        for(int i=1;i<=n;i++){
+            graph[i] = new ArrayList<>();
+        }
+
+        for(int i=0;i<m;i++){
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            graph[u].add(v);
+            graph[v].add(u);
+        }
+
+        for(int i=1;i<=n;i++){
+            Collections.sort(graph[i]);
+        }
+
+        dfs(graph, start);
+        System.out.println();
+
+        visited = new boolean[n+1];
+
+        bfs(graph, start);
+        System.out.println();
+    }
+
+    public static void dfs(ArrayList<Integer>[] graph, int start){
+        visited[start] = true;
+        System.out.print(start+" ");
+        for(int i=0;i<graph[start].size();i++){
+            int next = graph[start].get(i);
+            if(!visited[next]){
+                dfs(graph, next);
+            }
+        }
+    }
+
+    public static void bfs(ArrayList<Integer>[] graph, int start){
+        Queue<Integer> q = new LinkedList<>();
+        visited[start] = true;
+        q.add(start);
+
+        while(!q.isEmpty()){
+            int cur = q.poll();
+            System.out.print(cur+" ");
+            for(int i=0;i<graph[cur].size();i++){
+                int next = graph[cur].get(i);
+                if(!visited[next]){
+                    visited[next]=true;
+                    q.add(next);
+                }
+            }
+        }
+    }
+}
+```
