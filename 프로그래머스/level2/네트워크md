@@ -1,0 +1,54 @@
+### JAVA 소스코드
+각각의 노드에 대해서 방문했는지 여부를 확인하면서 방문안했으면 dfs 수행하기
+```java
+import java.util.*;
+
+class Solution {
+    static boolean[] visited;
+    
+    public static int solution(int n, int[][] computers) {
+        int answer = 0;
+        visited = new boolean[n];
+        ArrayList<Integer>[] arr=(ArrayList<Integer>[])new ArrayList[n]; //ArrayList의 배열
+
+        for(int i=0;i<n;i++){
+            arr[i] = new ArrayList<Integer>();
+        }
+
+        //인접리스트 만들기
+        for(int i=0;i<computers.length;i++){
+            for(int j=0;j<computers[i].length;j++){
+                if(computers[i][j]==1 && i!=j){
+                    arr[i].add(j);
+                }
+            }
+        }
+
+        for(int i=0;i<arr.length;i++){
+               
+            if(!visited[i]){    
+                if(arr[i].size()==0){ //한 노드에 연결된 다른 노드가 없으면 dfs 수행x, answer 증가만
+                    answer++;
+                    continue;
+                }
+                dfs(arr, i);
+                answer++;
+            }
+          
+        }
+
+        
+        return answer;
+    }
+    
+    public static void dfs(ArrayList<Integer>[] arr, int start){
+        visited[start] = true;
+        for(int i=0;i<arr[start].size();i++){
+            if(!visited[arr[start].get(i)]){                
+                dfs(arr, arr[start].get(i));
+            }
+        }
+    }
+    
+}
+```
