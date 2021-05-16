@@ -1,4 +1,4 @@
-## 재귀호출을 사용한 구현
+## 재귀호출을 사용한 구현 (그래프)
 ```c++
 #include <iostream>
 #include <vector>
@@ -140,5 +140,38 @@ int main()
     cout << dfsCnt; // (0,0)에서 DFS 수행하여 depth=4인 경우의 수
 
     return 0;
+}
+```
+
+## 배열에서 DFS
+타겟 문자열까지 가는 거리(횟수)의 최소값
+```java
+class Solution {
+    boolean[] checked;
+    int answer = 51;
+  
+    public int solution(String begin, String target, String[] words) {
+        checked=new boolean[words.length];
+        dfs(begin, target, 0, words);
+
+        return answer;
+    }
+    
+    public void dfs(String present, String target, int count, String[] words){
+        if(present.equals(target)){ //현재 문자열과 타겟 문자열이 일치하면 dfs 끝
+            answer = (answer>count)?count:answer; 
+            return;
+        }
+        
+        for(int i=0;i<words.length;i++){
+            if(!checked[i] && check(present, words[i])){ 
+                checked[i]=true;
+                dfs(words[i], target, count+1, words);
+                checked[i]=false;
+            }
+        }
+        
+    }
+    
 }
 ```
