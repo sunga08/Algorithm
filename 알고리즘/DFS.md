@@ -144,7 +144,7 @@ int main()
 ```
 
 ## 배열에서 DFS
-타겟 문자열까지 가는 거리(횟수)의 최소값
+타겟 문자열까지 가는 거리(횟수)의 최소값 👉 프로그래머스 단어변환 문제
 ```java
 class Solution {
     boolean[] checked;
